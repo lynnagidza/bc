@@ -50,6 +50,8 @@ session_unset($_SESSION['msg']);
 <div class="row">
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-push-3 col-sm-push-3 col-md-push-3 col-xs-push-3 form-group">
 <br /><input type="submit" value="Sign Up" class="form-control"/>
+<br>
+<a href="login.php">Already have an account? Log in </a>
 </div>
 </form>
 <?php

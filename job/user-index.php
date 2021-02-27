@@ -25,7 +25,7 @@ include_once 'config.php';
 <!-- <li><a onclick=load("user-apply.php")>Apply Now</a></li>
 <li><a onclick=load("profile.php")>Profile Settings</a></li>
 <li><a onclick=load("update-password.php")>Update Password</a></li> -->
-<li><a onclick=load("my-hires.php")>My Hires</a></li>
+<li><a onclick=load("my-hires.php")>Previous Hires</a></li>
 <li><a onclick=load("new-reviews.php")>Add Review</a></li>
 <li><a onclick=load("my-reviews.php")>My Reviews</a></li>
 </ul>

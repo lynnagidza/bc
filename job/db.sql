@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2017 at 02:06 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Feb 27, 2021 at 02:58 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `yasheka`
+-- Database: `blue`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +32,7 @@ CREATE TABLE `admin_inbox` (
   `msg_id` int(11) NOT NULL,
   `from_id` varchar(50) NOT NULL,
   `subject` varchar(50) NOT NULL,
-  `recieved_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `recieved_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `message` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,7 +41,8 @@ CREATE TABLE `admin_inbox` (
 --
 
 INSERT INTO `admin_inbox` (`msg_id`, `from_id`, `subject`, `recieved_date`, `message`) VALUES
-(1, 'yash1996venugopal', 'hello admin', '2017-07-19 07:16:31', 'just saying hi');
+(1, 'yash1996venugopal', 'hello admin', '2017-07-19 07:16:31', 'just saying hi'),
+(2, '', 'COMPLAINT', '2021-02-26 17:13:06', 'User Kariuki stole from my house');
 
 -- --------------------------------------------------------
 
@@ -76,53 +79,6 @@ INSERT INTO `candidates` (`cad_id`, `cad_name`, `job_id`, `skills`, `exp`, `qual
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee`
---
-
-CREATE TABLE `employee` (
-  `name` varchar(10) NOT NULL,
-  `ssn` varchar(10) NOT NULL,
-  `mobile` varchar(10) NOT NULL,
-  `city` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`name`, `ssn`, `mobile`, `city`) VALUES
-('jhon deo', '180', '9036951392', 'mangalore'),
-('jane deo', '181', '9876897756', 'kolkata'),
-('jummy', '182', '7865473856', 'mysore'),
-('micheal', '183', '9985647234', 'mumbai'),
-('ben', '184', '9036051392', 'bangalore'),
-('den', '185', '9481248679', 'mysore'),
-('yasheka', '187', '8892773108', 'bangalore');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `employer`
---
-
-CREATE TABLE `employer` (
-  `company_id` int(11) NOT NULL,
-  `company_name` varchar(50) NOT NULL,
-  `ceo` varchar(50) NOT NULL,
-  `jobs_posted` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employer`
---
-
-INSERT INTO `employer` (`company_id`, `company_name`, `ceo`, `jobs_posted`) VALUES
-(1, 'IBM', 'Ginni Rometty', 1),
-(2, '3ACES', 'Ajeesh', 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `jobs`
 --
 
@@ -134,8 +90,8 @@ CREATE TABLE `jobs` (
   `qualification` varchar(100) NOT NULL,
   `experience` int(20) NOT NULL,
   `job_description` varchar(500) NOT NULL,
-  `applied` int(20) NOT NULL DEFAULT '0',
-  `posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `applied` int(20) NOT NULL DEFAULT 0,
+  `posted` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -236,7 +192,7 @@ CREATE TABLE `user` (
   `gender` varchar(7) NOT NULL,
   `skills` varchar(30) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -255,6 +211,36 @@ INSERT INTO `user` (`user_id`, `name`, `mobile`, `email`, `location`, `gender`, 
 (9, 'Sumedh', '8900756377', 'sumedh.shriram@gmail.com', 'karnataka', 'male', 'html,css,', 'images/Penguins.jpg', '2017-07-11 11:22:14'),
 (10, 'jhon deo', '98789718789', 'jhon.deo@gmail.com', 'jammu and kashmir', 'male', 'html,css,mysql,', 'images/Tulips.jpg', '2017-07-12 06:04:44');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workers`
+--
+
+CREATE TABLE `workers` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(50) NOT NULL,
+  `occupation` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `reviews` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `workers`
+--
+
+INSERT INTO `workers` (`id`, `fullname`, `occupation`, `location`, `phone`, `reviews`) VALUES
+(1, 'Alvynah Wabwoba', 'Painter', 'Juja', '0792833436', 'Awesome service 5/5'),
+(2, 'Ben Kasyimi', 'Plumber', 'Machakos', '0702983716', ''),
+(3, 'Fay Akiya', 'Cleaner', 'Kisii', '0707815845', ''),
+(4, 'Hudson Ogubi', 'IT Specialist', 'Kisumu', '0721857807', ''),
+(5, 'Allan Ambuchi', 'Civil Engineer', 'Mombasa', '0708083398', ''),
+(6, 'Omollo Ochieng\'', 'Mechanic', 'Kisumu', '0722084038', ''),
+(7, 'Linnie Wamaitha', 'Baker', 'Nairobi', '0741135710', ''),
+(8, 'Ashley Anyango', 'Farmer', 'Kisumu', '0790327845', '10/10'),
+(9, 'Humphrey Anya', 'Farmer', 'Kisumu', '0722940378', 'Competent');
+
 --
 -- Indexes for dumped tables
 --
@@ -270,18 +256,6 @@ ALTER TABLE `admin_inbox`
 --
 ALTER TABLE `candidates`
   ADD PRIMARY KEY (`cad_id`);
-
---
--- Indexes for table `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`ssn`);
-
---
--- Indexes for table `employer`
---
-ALTER TABLE `employer`
-  ADD PRIMARY KEY (`company_id`);
 
 --
 -- Indexes for table `jobs`
@@ -314,6 +288,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `workers`
+--
+ALTER TABLE `workers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -321,32 +301,39 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin_inbox`
 --
 ALTER TABLE `admin_inbox`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
   MODIFY `cad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `employer`
---
-ALTER TABLE `employer`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `job_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `reg_user`
 --
 ALTER TABLE `reg_user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `workers`
+--
+ALTER TABLE `workers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

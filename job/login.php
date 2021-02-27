@@ -44,6 +44,8 @@ session_unset($_SESSION['msg']);
 <div class="row">
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-push-4 col-sm-push-4 col-md-push-4 col-xs-push-4 form-group">
 <br /><input type="submit" value="login" class="form-control"/>
+<br>
+<a href="signup.php">Don't have an account? Sign Up</a> 
 </div>
 </div>
 </form>
@@ -77,7 +79,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 		}
 				else
 				{
-					
+
 					$_SESSION['msg']="incorrect password";
 					header("location:login.php");
 				}

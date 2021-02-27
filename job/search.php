@@ -2,30 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>search</title>
+<title>Search Results</title>
 </head>
 <body>
 <?php
 include 'config.php';
 ?>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-<input type="text" name="search"/>
-<input type="submit"  value="search" />
-</form>
-<?php
-if($_SERVER['REQUEST_METHOD']=='POST')
-{
-$search=$_POST['search'];
-$search="%".$search."%";
-$sql="select * from jobs where job_title like '$search'";
-$result=$con->query($sql);
-while($record=$result->fetch_assoc()){
-?>
-<p><?php echo $record['job_title']; ?> <a href="apply.php">apply</a></p>
 
-<?php
-}
-}
-?>
 </body>
 </html>
