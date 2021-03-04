@@ -27,7 +27,7 @@ include_once 'config.php';
 <li><a href="index.php">New Hire</a></li>
 <li><a onclick=load("my-hires.php")>Previous Hires</a></li>
 <li><a onclick=load("new-reviews.php")>Add/Edit Review</a></li>
-<li><a onclick=load("my-reviews.php")>My Reviews</a></li>
+<!-- <li><a onclick=load("my-reviews.php")>My Reviews</a></li> -->
 </ul>
 </div>
 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 dashboard" id="demo">

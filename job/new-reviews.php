@@ -28,6 +28,7 @@ $hirer = $_SESSION['username'];
           <label class="control-label">Review:</label><textarea class="form-control white_bg" name="review" rows="4" required=""></textarea><br />
           <div class="form-group">
             <button type="submit" name="submit" class="btn">Post<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+            <button type="button" name="back"> <a href="user-index.php">Go back</a> </button>
           </div>
         </select>
         <br>
