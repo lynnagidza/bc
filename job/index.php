@@ -105,8 +105,7 @@ session_start();
           if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
               $fullname = $row['fullname'];
-              $phoneNumber = $row['phone'];
-              $disp = "You are looking for a " .$occup_value ." within " .$locat_value. " we have ".$fullname.  ". Phone number: " .$phoneNumber. ". ";
+              $disp = "You are looking for a " .$occup_value ." within " .$locat_value. " we have ".$fullname. ". ";
               echo $disp;
               echo "<button type='button' name='hire' id='hire' class='slider-btn'> Hire</button><br>";
             }
@@ -116,13 +115,16 @@ session_start();
           }
         }
       }
+
+      $_SESSION['occupation'] = $occup_value;
+      $_SESSION['location'] = $locat_value;
     }
     ?>
     <!--Code to redirect if hire button is clicked-->
     <script type="text/javascript">
     document.getElementById("hire").onclick = function () {
-        // location.href = "worker-details.php";
-        location.href = "user-index.php";
+        location.href = "worker-details.php";
+        // location.href = "user-index.php";
     };
 </script>
 
