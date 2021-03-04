@@ -13,25 +13,28 @@ if($_SERVER['REQUEST_METHOD']=='POST')
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-push-2 col-sm-push-2 col-md-push-2">
-        <h2 align="center">Post A Review</h2><br />
+        <!-- <h2 align="center">Post A Review</h2><br /> -->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
-          <!-- choose worker -->
-          <label class="control-label">Choose worker:</label>
+          <!-- list of previous hires -->
+          <label class="control-label">Here are the workers you have ever hired:</label> <br>
           <?php
-          $workers = "SELECT hiree FROM hires WHERE hirer='$hirer' ORDER BY hiree";
-          $getWorkers = mysqli_query($con,$workers);
-          echo "<select id='workers' name='workers[]' class='form-control'  >";
-          while ($workersArray = mysqli_fetch_assoc($getWorkers)){
-            $displayWorkers = $workersArray['hiree']; //populates dropdown with values from hiree column in hires table
-            $_SESSION['hired'] = $displayWorkers;
-            echo "<option>$displayWorkers</option>";
-          }
-          echo "</select>" ?>
+          $sql = "SELECT * FROM hires WHERE hirer='$hirer' ORDER BY hiree";
+          $query = mysqli_query($con,$sql);
+          if(mysqli_num_rows($query) > 0){
+            while($row = mysqli_fetch_assoc($query)){
+              $hiree = $row['hiree'];
+              $date_hired = $row['date_hired'];
+
+              echo "<br><span>Name:</span> "; echo $hiree;
+              echo "<br><span>Day hired:</span> "; echo $date_hired;
+              echo "<br>";
+
+            }
+          } ?>
           <br>
-          <label class="control-label">Review:</label><textarea class="form-control white_bg" name="review" rows="4" required=""></textarea><br />
-          <div class="form-group">
+          <!-- <div class="form-group">
             <button type="submit" name="submit" class="btn">Post<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-          </div>
+          </div> -->
         </select>
         <br>
       </form>
@@ -39,18 +42,3 @@ if($_SERVER['REQUEST_METHOD']=='POST')
   </div>
 </div>
 </section>
-
-<?php
-if(isset($_POST['submit'])){
-  $review = $_POST['review'];
-  $hired = $_SESSION['hired'];
-  $addHire = "INSERT INTO workers (reviews)VALUES ('.$review.') WHERE fullname='$hired'";
-  $newHire = mysqli_query($con, $addHire);
-  if ($newHire){
-    echo "Review added successfully!";
-    header("location: user-index.php");
-  } else {
-    echo "THIS DOESN'T WORK!";
-  }
-}
- ?>
