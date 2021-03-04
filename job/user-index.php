@@ -23,7 +23,7 @@ include_once 'config.php';
 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-20 admin-menu-list">
 <ul>
 <li><a onclick=load("profile.php")>Edit Profile</a></li>
-<li><a onclick=load("update-password.php")>Update Password</a></li>
+<!-- <li><a onclick=load("update-password.php")>Update Password</a></li> -->
 <li><a href="index.php">New Hire</a></li>
 <li><a onclick=load("my-hires.php")>Previous Hires</a></li>
 <li><a onclick=load("new-reviews.php")>Add/Edit Review</a></li>
