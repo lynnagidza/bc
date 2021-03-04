@@ -32,14 +32,21 @@
           <button class="dropbtn">JOBS <span class="glyphicon glyphicon-triangle-bottom"></span></button>
           <div class="dropdown-content" > <a href="job-list.php">Job List</a> <a href="">Category Listing</a> <a href="">Company Listing</a><a href="">Keyword Listing</a> <a href="">Part time Jobs</a> <a href="">Job Alert</a></div>
         </div> -->
-        <div class="dropdown"> <a href="admin-index.php">
+        <!-- <div class="dropdown"> <a href="admin-index.php">
           <button class="dropbtn">CONTACT </button>
-          </a> </div>
+          </a> </div> -->
+          <?php
+          if(isset($_SESSION['username'])){?>
+            <div class="dropdown"> <a href="user-index.php">
+              <button class="dropbtn">MY PROFILE </button>
+              </a> </div><?php } ?>
       </div>
       <?php
 if(empty($_SESSION['username'])){?>
 <div class="col-lg-3 col-md-3 signin"> <a href="login.php">Login</a> <a href="signup.php">Sign up</a> </div><?php } else {?>
 <div class="col-lg-3 col-md-3 signin"> <a href="logout.php">Logout</a></div><?php } ?>
+
+
     </div>
   </div>
 </header>
