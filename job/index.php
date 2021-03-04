@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -89,7 +93,7 @@
     </section>
     <!--slider section ends here-->
     <?php
-
+    //Code to fetch workers that match
     if (isset($_POST['occupation'], $_POST['location'])) {
       $selectedOcc = $_POST['occupation'];
       $selectedLoc = $_POST['location'];
@@ -104,9 +108,7 @@
               $phoneNumber = $row['phone'];
               $disp = "You are looking for a " .$occup_value ." within " .$locat_value. " we have ".$fullname.  ". Phone number: " .$phoneNumber. ". ";
               echo $disp;
-              ?>
-              <button type="button" name="hire" class="slider-btn"> <a href="login.php"> Hire</a></button>
-              <?php
+              echo "<button type='button' name='hire' id='hire' class='slider-btn'> Hire</button><br>";
             }
           } else {
             echo "<br>";
@@ -116,6 +118,13 @@
       }
     }
     ?>
+    <!--Code to redirect if hire button is clicked-->
+    <script type="text/javascript">
+    document.getElementById("hire").onclick = function () {
+        // location.href = "worker-details.php";
+        location.href = "user-index.php";
+    };
+</script>
 
     <!--footer section starts here-->
     <?php
