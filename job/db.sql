@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2021 at 02:58 PM
+-- Generation Time: Mar 04, 2021 at 01:21 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -75,6 +75,74 @@ INSERT INTO `candidates` (`cad_id`, `cad_name`, `job_id`, `skills`, `exp`, `qual
 (10, 'yasheka', 9, 'html,css', '3', 'BE', 'yash1996venugopal@gmail.com', '8892773108', ''),
 (11, 'yasheka', 9, 'html,css', '3', 'BE', 'yash1996venugopal@gmail.com', '8892773108', ''),
 (12, 'emma watson', 1, 'dbms', '1', 'BE', 'emma.watson@gmail.com', '8892773108', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  `name` varchar(10) NOT NULL,
+  `ssn` varchar(10) NOT NULL,
+  `mobile` varchar(10) NOT NULL,
+  `city` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`name`, `ssn`, `mobile`, `city`) VALUES
+('jhon deo', '180', '9036951392', 'mangalore'),
+('jane deo', '181', '9876897756', 'kolkata'),
+('jummy', '182', '7865473856', 'mysore'),
+('micheal', '183', '9985647234', 'mumbai'),
+('ben', '184', '9036051392', 'bangalore'),
+('den', '185', '9481248679', 'mysore'),
+('yasheka', '187', '8892773108', 'bangalore');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employer`
+--
+
+CREATE TABLE `employer` (
+  `company_id` int(11) NOT NULL,
+  `company_name` varchar(50) NOT NULL,
+  `ceo` varchar(50) NOT NULL,
+  `jobs_posted` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employer`
+--
+
+INSERT INTO `employer` (`company_id`, `company_name`, `ceo`, `jobs_posted`) VALUES
+(1, 'IBM', 'Ginni Rometty', 1),
+(2, '3ACES', 'Ajeesh', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hires`
+--
+
+CREATE TABLE `hires` (
+  `id` int(11) NOT NULL,
+  `hiree` varchar(50) NOT NULL,
+  `hirer` varchar(50) NOT NULL,
+  `date_hired` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hires`
+--
+
+INSERT INTO `hires` (`id`, `hiree`, `hirer`, `date_hired`) VALUES
+(1, 'Linnie Wamaitha', 'Mwalumzz', '2021-03-04'),
+(2, 'Ben Kasyimi', 'Mwalumzz', '2021-03-04');
 
 -- --------------------------------------------------------
 
@@ -173,9 +241,11 @@ CREATE TABLE `reg_user` (
 --
 
 INSERT INTO `reg_user` (`user_id`, `name`, `mobile`, `email`, `username`, `password`) VALUES
-(1, 'yasheka', '8892773108', 'yash1996venugopla@gmail.com', 'yasheka96', 'myselfyo'),
-(2, 'emma watson', '9481248679', 'emma.watson@gmail.com', 'emma.watson', 'harry.potter'),
-(3, 'harry potter', '9611677189', 'harry.potter@gmail.com', 'harry potter', 'hogwards');
+(1, 'Yash Eka', '+254700147722', 'yasheka@gmail.com', 'yasheka', 'myselfyo'),
+(2, 'Emma Watson', '9481248679', 'emma.watson@gmail.com', 'emma.watson', 'harry.potter'),
+(3, 'Harry Potter', '+254706729033', 'harry.potter@gmail.com', 'harry potter', 'hogwards'),
+(4, 'Lynn Agidza', '+254797143344', 'lynnagidza@gmail.com', 'agidza', 'password'),
+(7, 'Kevin Mwaluma Mwachari', '+254706663321', 'mwaluma@gmail.com', 'Mwalumzz', '12345');
 
 -- --------------------------------------------------------
 
@@ -232,12 +302,12 @@ CREATE TABLE `workers` (
 
 INSERT INTO `workers` (`id`, `fullname`, `occupation`, `location`, `phone`, `reviews`) VALUES
 (1, 'Alvynah Wabwoba', 'Painter', 'Juja', '0792833436', 'Awesome service 5/5'),
-(2, 'Ben Kasyimi', 'Plumber', 'Machakos', '0702983716', ''),
+(2, 'Ben Kasyimi', 'Plumber', 'Machakos', '0702983716', '10/10'),
 (3, 'Fay Akiya', 'Cleaner', 'Kisii', '0707815845', ''),
 (4, 'Hudson Ogubi', 'IT Specialist', 'Kisumu', '0721857807', ''),
 (5, 'Allan Ambuchi', 'Civil Engineer', 'Mombasa', '0708083398', ''),
 (6, 'Omollo Ochieng\'', 'Mechanic', 'Kisumu', '0722084038', ''),
-(7, 'Linnie Wamaitha', 'Baker', 'Nairobi', '0741135710', ''),
+(7, 'Linnie Wamaitha', 'Baker', 'Nairobi', '0741135710', 'Highly recommend'),
 (8, 'Ashley Anyango', 'Farmer', 'Kisumu', '0790327845', '10/10'),
 (9, 'Humphrey Anya', 'Farmer', 'Kisumu', '0722940378', 'Competent');
 
@@ -256,6 +326,24 @@ ALTER TABLE `admin_inbox`
 --
 ALTER TABLE `candidates`
   ADD PRIMARY KEY (`cad_id`);
+
+--
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`ssn`);
+
+--
+-- Indexes for table `employer`
+--
+ALTER TABLE `employer`
+  ADD PRIMARY KEY (`company_id`);
+
+--
+-- Indexes for table `hires`
+--
+ALTER TABLE `hires`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `jobs`
@@ -310,6 +398,18 @@ ALTER TABLE `candidates`
   MODIFY `cad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `employer`
+--
+ALTER TABLE `employer`
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `hires`
+--
+ALTER TABLE `hires`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -319,7 +419,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `reg_user`
 --
 ALTER TABLE `reg_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
