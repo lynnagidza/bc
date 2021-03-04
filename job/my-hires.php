@@ -31,13 +31,9 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 
             }
           } ?>
-          <br>
-          <!-- <div class="form-group">
-            <button type="submit" name="submit" class="btn">Post<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-          </div> -->
-        </select>
-        <br>
+
       </form>
+      <button type='button' name='review' id='review' class='slider-btn'><a onclick=load('new-reviews.php')>Review workers</a></button>
     </div>
   </div>
 </div>

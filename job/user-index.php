@@ -24,9 +24,9 @@ include_once 'config.php';
 <ul>
 <li><a onclick=load("profile.php")>Edit Profile</a></li>
 <li><a onclick=load("update-password.php")>Update Password</a></li>
-<li><a onclick=load("new-hire.php")>New Hire</a></li>
+<li><a href="index.php">New Hire</a></li>
 <li><a onclick=load("my-hires.php")>Previous Hires</a></li>
-<li><a onclick=load("new-reviews.php")>Add Review</a></li>
+<li><a onclick=load("new-reviews.php")>Add/Edit Review</a></li>
 <li><a onclick=load("my-reviews.php")>My Reviews</a></li>
 </ul>
 </div>
