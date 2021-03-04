@@ -14,7 +14,8 @@ $row=mysqli_fetch_array($query);
     <label class="control-label">Full name: </label><input type="text" name="name" class="form-control" value="<?php echo $row['name']; ?>" />  <br />
     <label class="control-label">Mobile number:  </label><input type="text" name="mobile"  class="form-control" value="<?php echo $row['mobile']; ?>"/></label><br />
     <label class="control-label">Email address:  </label><input type="text" name="email"  class="form-control" value="<?php echo $row['email']; ?>"/><br />
-    <input type="submit" value="update" name="update" class="thm-btn"/>
+    <input type="submit" value="update" name="update" class="thm-btn"/><br>
+    <button type="button" name="back"> <a href="user-index.php">Go back</a> </button>
   </form>
 
 </section>
