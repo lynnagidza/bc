@@ -48,6 +48,7 @@ if (isset($_POST['hire'])){
   // printf("Select returned %d rows.\n", $newHire->num_rows);
   if ($newHire){
     echo "Hire Successful!";
+    header("location: user-index.php");
   } else {
     echo "THIS DOESN'T WORK!";
   }

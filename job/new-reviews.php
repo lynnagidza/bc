@@ -1,37 +1,10 @@
 
 <?php
 include_once 'config.php';
-if($_SERVER['REQUEST_METHOD']=='POST')
-{
-
-  if(isset($_POST['submit']))
-  {
-
-    // $sql=$con->prepare("insert into admin_inbox(subject,message,msg_id) values(?,?,?)");
-    // $sql->bind_param("sss",$subject,$message,$msg_id);
-    // $subject=$_POST['subject'];
-    // $message=$_POST['message'];
-    // $query="select from_id from admin_inbox where msg_id='$msg_id'";
-    // $result=$con->query($query);
-    // $record=$result->fetch_assoc();
-    // $msg_id=$record['msg_id'];
-    // $sql->execute();
-    // $sql="update message where msg_id='$msg_id'";
-
-    $sql=$con->prepare("insert into admin_inbox(subject,message,msg_id) values(?,?,?)");
-    $sql->bind_param("sss",$subject,$message,$msg_id);
-    $subject=$_POST['subject'];
-    $message=$_POST['message'];
-    $query="select from_id from admin_inbox where msg_id='$msg_id'";
-    $result=$con->query($query);
-    $record=$result->fetch_assoc();
-    $msg_id=$record['msg_id'];
-    $sql->execute();
-    $sql="update message where msg_id='$msg_id'";
-    $con->query($sql);
-
-  }
-}
+session_start();
+$hirer = $_SESSION['username'];
+// if($_SERVER['REQUEST_METHOD']=='POST')
+// {}
 ?>
 <section class="body-section">
   <div class="container">
@@ -42,27 +15,17 @@ if($_SERVER['REQUEST_METHOD']=='POST')
           <!-- choose worker -->
           <label class="control-label">Choose worker:</label>
           <?php
-          $workers = "SELECT fullname FROM workers ORDER BY fullname";
+          $workers = "SELECT hiree FROM hires WHERE hirer='$hirer' ORDER BY hiree";
           $getWorkers = mysqli_query($con,$workers);
           echo "<select id='workers' name='workers[]' class='form-control'  >";
           while ($workersArray = mysqli_fetch_assoc($getWorkers)){
-            $displayWorkers = $workersArray['workers'];
+            $displayWorkers = $workersArray['hiree']; //populates dropdown with values from hiree column in hires table
+            // $_SESSION['hired'] = $displayWorkers;
             echo "<option>$displayWorkers</option>";
           }
           echo "</select>" ?>
           <br>
-          <label class="control-label">Location:</label>
-          <?php
-          $loc = "SELECT DISTINCT location FROM workers ORDER BY location";
-          $getLoc = mysqli_query($con,$loc);
-          echo "<select id='location' name='location[]' class='form-control' > ";
-          while ($locationArray = mysqli_fetch_assoc($getLoc)){
-            $displayLoc = $locationArray['location'];
-            echo "<option>$displayLoc</option>";
-          }
-          echo "</select>" ?>
-          <br>
-          <label class="control-label">Review:</label><textarea class="form-control white_bg" name="message" rows="4" required=""></textarea><br />
+          <label class="control-label">Review:</label><textarea class="form-control white_bg" name="review" rows="4" required=""></textarea><br />
           <div class="form-group">
             <button type="submit" name="submit" class="btn">Post<span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
           </div>
@@ -73,3 +36,20 @@ if($_SERVER['REQUEST_METHOD']=='POST')
   </div>
 </div>
 </section>
+
+<?php
+if(isset($_POST['submit'], $_POST['review'], $_POST['workers'])){
+  $review = $_POST['review'];
+  $hired = $_POST['workers'];
+
+  foreach ($hired as $hiredWorker => $hiredWorkerValue) {
+    // $addReview = "INSERT INTO workers (reviews)VALUES ('$review') ";
+    $addReview = "UPDATE workers SET reviews = '$review' WHERE fullname='$hiredWorkerValue'";
+    $newReview = mysqli_query($con, $addReview);
+    echo "Review added";
+    }
+
+  }
+
+
+  ?>
