@@ -35,42 +35,43 @@ if($_SESSION['username']!="admin"){
 					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 dashboard-pannel">
 						<div class="row">
 							<div class="pannel-content"><span class="fa fa-building"></span>
-								<h4><?php $sql="select * from jobs"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
+								<h4><?php $sql="SELECT * FROM workers"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
 								<div class="pannel-footer" style="background-color: #fe9426">
-									<p>Total Employers</p>
+									<p>Total Workers</p>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 dashboard-pannel">
 							<div class="row">
 								<div class="pannel-content"><span class="fa fa-vcard"></span>
-									<h4><?php $sql="select * from candidates"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
+									<h4><?php $sql="SELECT * FROM reg_user"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
 									<div class="pannel-footer" style="background-color: #fb3157">
-										<p>Registered Candidates</p>
+										<p>Registered Users</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 dashboard-pannel" >
 								<div class="row">
 									<div class="pannel-content"><span class="fa fa-briefcase"></span>
-										<h4><?php $sql="select * from jobs"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
+										<h4><?php $sql="SELECT DISTINCT occupation from workers"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
 										<div class="pannel-footer" style="background-color: #157efb">
 											<p>Total Jobs</p>
 										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 dashboard-pannel">
+									</div>								</div>
+								<!-- <div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 dashboard-pannel">
 									<div class="row">
 										<div class="pannel-content"><span class="fa fa-user-circle"></span>
-											<h4><?php $sql="select * from candidates"; $result=$con->query($sql); echo $result->num_rows;?></h4>
+											<h4><?php
+											// $sql="  "; $result=$con->query($sql); echo $result->num_rows;
+											?></h4>
 										</div>
 
 										<div class="pannel-footer" style="background-color:#53d769">
-											<p>Total Candidates</p>
+											<p>Total Users>
 										</div>
 									</div>
 
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
