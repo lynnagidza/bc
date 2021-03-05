@@ -22,7 +22,7 @@ include_once 'config.php';
 <div class="row">
 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-20 admin-menu-list">
 <ul>
-<li><a onclick=load("profile.php")>Edit Profile</a></li>
+<li><a onclick="link('profile.php')">Edit Profile</a></li>
 <!-- <li><a onclick=load("update-password.php")>Update Password</a></li> -->
 <li><a href="index.php">New Hire</a></li>
 <li><a onclick=load("my-hires.php")>Previous Hires</a></li>
@@ -43,6 +43,14 @@ function load(sub) {
   xhttp.open("GET", page, false);
   xhttp.send();
   document.getElementById("demo").innerHTML = xhttp.responseText;
+}
+
+function link(sub) {
+	var page=sub;
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", page, false);
+	xhttp.send();
+	document.getElementById("demo").innerHTML = xhttp.responseText;
 }
 </script>
 <?php

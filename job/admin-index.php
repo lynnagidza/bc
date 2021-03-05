@@ -23,10 +23,10 @@ if($_SESSION['username']!="admin"){
 			<div class="row">
 				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 admin-menu-list">
 					<ul>
-						<li><a onClick="link('upload-job.php')">Post Job</a></li>
-						<li><a onClick="link('view-all.php')">View Posted Jobs</a></li>
-						<li><a onClick="link('view-emp.php')">View Employers</a></li>
-						<li><a onClick="link('view-cad.php')">View Candidates</a></li>
+						<li><a onClick="link('upload-job.php')">Add Worker</a></li>
+						<!-- <li><a onClick="link('view-all.php')">View Posted Jobs</a></li> -->
+						<!-- <li><a onClick="link('view-emp.php')">View Employers</a></li> -->
+						<li><a onClick="link('view-users.php')">View Registered Users</a></li>
 						<li><a onClick="link('admin-inbox.php')">View Messages</a></li>
 					</ul>
 				</div>

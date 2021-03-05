@@ -4,7 +4,7 @@
   include_once 'header.php';
   ?>
   <section class="body-section">
-    <div style="background-image: url('images/grey.jpg');">
+    <!-- <div style="background-image: url('images/grey.jpg');"> -->
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </section>
   <?php
   include_once 'footer.php';

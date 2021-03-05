@@ -20,7 +20,6 @@ $hirer = $_SESSION['username'];
           echo "<select id='workers' name='workers[]' class='form-control'  >";
           while ($workersArray = mysqli_fetch_assoc($getWorkers)){
             $displayWorkers = $workersArray['hiree']; //populates dropdown with values from hiree column in hires table
-            // $_SESSION['hired'] = $displayWorkers;
             echo "<option>$displayWorkers</option>";
           }
           echo "</select>" ?>
