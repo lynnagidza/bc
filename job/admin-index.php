@@ -23,7 +23,7 @@ if($_SESSION['username']!="admin"){
 			<div class="row">
 				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 admin-menu-list">
 					<ul>
-						<li><a onClick="link('upload-job.php')">Add Worker</a></li>
+						<li><a onClick="link('add-worker.php')">Add Worker</a></li>
 						<!-- <li><a onClick="link('view-all.php')">View Posted Jobs</a></li> -->
 						<!-- <li><a onClick="link('view-emp.php')">View Employers</a></li> -->
 						<li><a onClick="link('view-users.php')">View Registered Users</a></li>
@@ -35,7 +35,7 @@ if($_SESSION['username']!="admin"){
 					<div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 dashboard-pannel">
 						<div class="row">
 							<div class="pannel-content"><span class="fa fa-building"></span>
-								<h4><?php $sql="SELECT * FROM workers"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
+								<h4><?php $sql="SELECT DISTINCT fullname FROM workers"; $result=$con->query($sql); echo $result->num_rows;?></h4></div>
 								<div class="pannel-footer" style="background-color: #fe9426">
 									<p>Total Workers</p>
 								</div>
