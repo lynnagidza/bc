@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -36,17 +37,27 @@
             session_unset($_SESSION['msg']);
           }
           ?>
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+          <form action="<?php
+          echo htmlspecialchars($_SERVER["PHP_SELF"]);
+          ?>" method="post">
+          <!-- <form action="https://gmail.us1.list-manage.com/subscribe/post?u=e5fca520602bab3f1cd757805&amp;id=91ce2fdd45" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate> -->
+          <!-- <form action="https://gmail.us1.list-manage.com/subscribe/post?u=e5fca520602bab3f1cd757805&amp;id=91ce2fdd45" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" > -->
             <div class="form-group">
-              <label class="control-label">Full name: </label><input type="text" name="name" class="form-control"/></div>
+              <label class="control-label">Full name: </label><input type="text" name="FNAME" id="mce-FNAME" class="form-control"/></div>
               <div class="form-group">
-                <label class="control-label">Mobile number: </label><input type="text" name="mobile" class="form-control"/></div>
+                <label class="control-label">Mobile number: </label><input type="text" name="PHONE" id="mce-PHONE" class="form-control"/></div>
                 <div class="form-group">
-                  <label class="control-label">Email address: </label><input type="email" name="email" class="form-control"/></div>
+                  <label class="control-label">Email address: </label><input type="email" name="EMAIL" id="mce-EMAIL" class="form-control"/></div>
                   <div class="form-group">
-                    <label class="control-label">Username: </label><input type="text" name="username" class="form-control"/></div>
+                    <label class="control-label">Username: </label><input type="text" name="USERNAME" id="mce-USERNAME" class="form-control"/></div>
                     <div class="form-group">
-                      <label class="control-label">Password: </label><input type="password" name="password" class="form-control"/></div>
+                      <label class="control-label">Password: </label><input type="password" name="PASSWORD" id="mce-PASSWORD" class="form-control"/></div>
+
+                      <div id="mce-responses" class="clear">
+                    		<div class="response" id="mce-error-response" style="display:none"></div>
+                    		<div class="response" id="mce-success-response" style="display:none"></div>
+                    	</div>
+
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-push-3 col-sm-push-3 col-md-push-3 col-xs-push-3 form-group">
                           <br />
@@ -55,16 +66,24 @@
                           <a href="login.php">Already have an account? Log in </a>
                         </div>
                       </form>
+
+                      <!-- <script type="text/javascript">
+                        $(document).ready(function(){
+                          $("form#mc-embedded-subscribe-form").submit(function(event){
+                            event.preventDefault();
+                          });
+                        });
+                      </script> -->
                       <?php
                       if($_SERVER['REQUEST_METHOD']=='POST')
                       {
                         $sql=$con->prepare("insert into reg_user(name,mobile,email,username,password) values(?,?,?,?,?)");
                         $sql->bind_param("sssss",$name,$mobile,$email,$username,$password);
-                        $name=$_POST['name'];
-                        $mobile=$_POST['mobile'];
-                        $email=$_POST['email'];
-                        $username=$_POST['username'];
-                        $password=$_POST['password'];
+                        $name=$_POST['FNAME'];
+                        $mobile=$_POST['PHONE'];
+                        $email=$_POST['EMAIL'];
+                        $username=$_POST['USERNAME'];
+                        $password=$_POST['PASSWORD'];
                         $sql->execute();
                       }
                       ?>

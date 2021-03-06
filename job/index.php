@@ -107,7 +107,7 @@ session_start();
               $fullname = $row['fullname'];
               $disp = "You are looking for a " .$occup_value ." within " .$locat_value. " we have ".$fullname. ". ";
               echo $disp;
-              echo "<button type='button' name='hire' id='hire' class='slider-btn'> Hire</button><br>";
+              echo "<button type='button' name='hire' id='hire' class='slider-btn'><a href='user-index.php'> Hire </a></button><br>";
             }
           } else {
             echo "<br>";
@@ -121,12 +121,12 @@ session_start();
     }
     ?>
     <!--Code to redirect if hire button is clicked-->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     document.getElementById("hire").onclick = function () {
-        location.href = "worker-details.php";
-        // location.href = "user-index.php";
+        // location.href = "worker-details.php";
+        location.href = "user-index.php";
     };
-</script>
+</script> -->
 
     <!--footer section starts here-->
     <?php

@@ -28,9 +28,10 @@ include_once 'header.php';
             if(isset($_SESSION['msg']))
             {
               if($_SESSION['msg']==1)
-              echo "please login";
+              echo "Please login";
               else
-              echo $_SESSION['msg'];
+              // echo $_SESSION['msg'];
+              // echo "You have to log in to hire workers!";
               session_unset($_SESSION['msg']);
             }
             ?>

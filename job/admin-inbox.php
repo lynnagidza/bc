@@ -4,7 +4,7 @@ include 'config.php';
 if(!empty($_GET['id']))
 {
   $id=$_GET['id'];
-  $sql="delete from jobs where job_id=$id";
+  $sql="delete from admin_inbox where msg_id=$id";
   $con->query($sql);
 }
 ?>
@@ -27,7 +27,7 @@ if(!empty($_GET['id']))
           <td><?php echo $record['message'];?></td>
           <td>
             <p>
-              <a href="#" onclick="return confirm('Are you sure you want to delete this record?')">delete</a>
+              <a href="#" name="del" onclick="return confirm('Are you sure you want to delete this record?')">delete</a>
             </p>
           </td>
         </tr>

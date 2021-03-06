@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -35,17 +37,23 @@
           <button class="dropbtn">JOBS <span class="glyphicon glyphicon-triangle-bottom"></span></button>
           <div class="dropdown-content" > <a href="job-list.php">Job List</a> <a href="">Category Listing</a> <a href="">Company Listing</a><a href="">Keyword Listing</a> <a href="">Part time Jobs</a> <a href="">Job Alert</a></div>
         </div> -->
+
+        <!-- Link to Admin Profile -->
         <?php
-        if($_SESSION['username']="admin"){?>
+        if(isset($_SESSION['username'])&&$_SESSION['username']=="admin"){?>
           <div class="dropdown"> <a href="admin-index.php">
             <button class="dropbtn">MY PROFILE </button>
           </a> </div><?php } ?>
+
+          <!-- Link to User Profile -->
           <?php
           if(isset($_SESSION['username'])&&$_SESSION['username']!="admin"){?>
             <div class="dropdown"> <a href="user-index.php">
               <button class="dropbtn">MY PROFILE </button>
             </a> </div><?php } ?>
           </div>
+
+          <!-- Sign Up or Log In  -->
           <?php
           if(empty($_SESSION['username'])){?>
             <div class="col-lg-3 col-md-3 signin"> <a href="login.php">Login</a> <a href="signup.php">Sign up</a> </div><?php } else {?>
