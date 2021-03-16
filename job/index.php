@@ -56,11 +56,11 @@ session_start();
                     <div class="col-lg-4">
                       <div class="row">
                         <?php
-                        $loc = "SELECT DISTINCT location FROM workers ORDER BY location";
+                        $loc = "SELECT DISTINCT location_name FROM location ORDER BY location_name";
                         $getLoc = mysqli_query($con,$loc);
                         echo "<select id='location' name='location[]' class='form-control' style='border:none; border-radius: 0px 10px 10px 0px;'> ";
                         while ($locationArray = mysqli_fetch_assoc($getLoc)){
-                          $displayLoc = $locationArray['location'];
+                          $displayLoc = $locationArray['location_name'];
                           echo "<option>$displayLoc</option>";
                         }
                         echo "</select>" ?>
@@ -107,7 +107,7 @@ session_start();
               $fullname = $row['fullname'];
               $disp = "You are looking for a " .$occup_value ." within " .$locat_value. " we have ".$fullname. ". ";
               echo $disp;
-              echo "<button type='button' name='hire' id='hire' class='slider-btn'><a href='user-index.php'> Hire </a></button><br>";
+              echo "<button type='button' name='hire' id='hire' class='slider-btn'><a href='worker-details.php'> Hire </a></button><br>";
             }
           } else {
             echo "<br>";

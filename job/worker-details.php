@@ -1,6 +1,11 @@
 <?php
 include_once 'config.php';
 session_start();
+if(empty($_SESSION['username'])){
+  header("location:login.php");
+  exit();
+}
+
 $occupation = $_SESSION['occupation'];
 $location = $_SESSION['location'];
 $hirer = $_SESSION['username'];
