@@ -10,14 +10,16 @@ if(isset($_SESSION['username'])!="admin"){
 
 if($_SERVER['REQUEST_METHOD']=='POST')
 {
-  $sql=$con->prepare("INSERT INTO workers(fullname,occupation,location,phone) values(?,?,?,?)");
-  $sql->bind_param("ssss",$fullname,$occupation,$location,$phone_number);
-  $fullname=$_POST['worker'];
-  $occupation=$_POST['occupation'];
   $location=$_POST['location'];
-  $phone_number=$_POST['phone'];
-  $sql->execute();
-  echo "WORKER ADDED";
+  foreach ($location as $key => $value) {
+    $sql=$con->prepare("INSERT INTO workers(fullname,occupation,location,phone) values(?,?,?,?)");
+    $sql->bind_param("ssss",$fullname,$occupation,$value,$phone_number);
+    $fullname=$_POST['worker'];
+    $occupation=$_POST['occupation'];
+    $phone_number=$_POST['phone'];
+    $sql->execute();
+    echo "WORKER ADDED";
+  }
 }
 ?>
 <body>
@@ -29,22 +31,32 @@ if($_SERVER['REQUEST_METHOD']=='POST')
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <label class="control-label">Name: <input type="text" name="worker" class="form-control" required  /> </label> <br />
             <!-- <label class="control-label">Gender: <br>
-              <input type="radio" id="male" name="gender" value="male">
-              <label for="male" class="control-label">Male</label>
-              <input type="radio" id="female" name="gender" value="female">
-              <label for="female" class="control-label">Female</label>
-              <input type="radio" id="other" name="gender" value="other">
-              <label for="other" class="control-label">Other</label>
-            </label><br /> -->
-            <label class="control-label">Occupation:  <input type="text" name="occupation" class="form-control" required  /></label><br />
-            <label class="control-label">Location:  <input type="text" name="location" class="form-control" required  /></label><br />
-            <label class="control-label">Phone Number: <input type="text" name="phone"  class="form-control" required /> </label> <br />
-            <input type="submit" value="Add" />
-            <button type="button" name="back"> <a href="admin-index.php">Go back</a> </button>
-          </form>
-        </div>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male" class="control-label">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female" class="control-label">Female</label>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other" class="control-label">Other</label>
+          </label><br /> -->
+          <label class="control-label">Occupation:  <input type="text" name="occupation" class="form-control" required  /></label><br />
+          <label class="control-label">Location:
+            <?php
+            $loc = "SELECT DISTINCT location_name FROM location ORDER BY location_name";
+            $getLoc = mysqli_query($con,$loc);
+            echo "<select id='location' name='location[]' class='form-control'> ";
+            while ($locationArray = mysqli_fetch_assoc($getLoc)){
+              $displayLoc = $locationArray['location_name'];
+              echo "<option>$displayLoc</option>";
+            }
+            echo "</select>" ?>
+          </label><br />
+          <label class="control-label">Phone Number: <input type="text" name="phone"  class="form-control" required /> </label> <br />
+          <input type="submit" value="Add" />
+          <button type="button" name="back"> <a href="admin-index.php">Go back</a> </button>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 </body>
 </html>
