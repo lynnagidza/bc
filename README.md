@@ -1,5 +1,5 @@
 ## BLUE COLLAR
-From it's name, this is a website that can be used by anyone who requires help doing "kazi ya mkono".
+From it's name, this is a website that can be used by anyone who requires help with "kazi ya mkono".
 It allows the user to search for blue collar workers in the listed areas.
 You can check out the demo **[here](http://bluecollar.epizy.com/)**.
 
@@ -8,8 +8,7 @@ You can check out the demo **[here](http://bluecollar.epizy.com/)**.
 - Web browser of choice
 
 
-### STEPS
----------------------------------
+### STEPS 👇🏿
 #### INSTALL XAMPP
 - XAMPP can installed using this link: https://www.apachefriends.org/download.html
 - Download the latest version (7.3.3/PHP 7.3.3).
